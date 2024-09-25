@@ -5,8 +5,7 @@ import {
   calculateTermDepositMonthly,
   calculateTermDepositQuarterly,
 } from "./helpers";
-// NOTE currently all investment terms are in years
-// TODO support investment terms in months
+import { validateInput } from "./validateInput";
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -14,6 +13,8 @@ const argv = yargs(process.argv.slice(2))
     // if it is not specified, an error will be thrown
     "start-deposit": { type: "number", demandOption: true },
     "interest-rate": { type: "number", demandOption: true },
+    // TODO support investment terms in months
+    // Assume that it is in years
     "investment-term": { type: "number", demandOption: true },
     "interest-paid": {
       // Only these values can be used for interest-paid. Any other
@@ -28,6 +29,12 @@ const argv = yargs(process.argv.slice(2))
   .help()
   // Needed to parse
   .parseSync();
+
+validateInput(
+  argv["start-deposit"],
+  argv["interest-rate"],
+  argv["investment-term"]
+);
 
 switch (argv["interest-paid"]) {
   case "at maturity":
