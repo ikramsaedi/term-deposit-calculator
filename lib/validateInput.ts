@@ -1,5 +1,9 @@
 import { convertMonthsToYears } from "./convertMonthsToYears";
 
+/**
+ * This validates the CLI arguments passed through to termDepositCalculator
+ * If any of the inputs are invalid, it will throw an error.
+ */
 export function validateInput(
   startDeposit: number,
   interestRate: number,

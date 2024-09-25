@@ -4,6 +4,9 @@ import { validateInput } from "./lib/validateInput";
 import { getInvestmentTermInYears } from "./lib/getInvestmentTermInYears";
 import { calculateCompoundInterest } from "./lib/calculateCompoundInterest";
 
+/**
+ * Arguments passed in from the command line
+ */
 const argv = yargs(process.argv.slice(2))
   .options({
     // demandOption means that this option MUST be specified
@@ -72,6 +75,9 @@ switch (argv["interest-paid"]) {
       12
     );
     break;
+  // This shouldn't be possible, but in case we somehow get an unsupported value for `interest-paid`
+  // we can get an error rather than failing silently.
+  // This also acts as a type guard.
   default:
     throw new Error(
       "Something has gone wrong and we have not been able to calculate your final balance."

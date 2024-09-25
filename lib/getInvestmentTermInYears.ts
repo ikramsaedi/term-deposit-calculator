@@ -1,5 +1,11 @@
 import { convertMonthsToYears } from "./convertMonthsToYears";
 
+/**
+ * This combines the investment term in years and months into a single investment term number.
+ *
+ * This just allows us to standardise the investment term so we don't have to have separate logic
+ * for months vs years.
+ */
 export function getInvestmentTermInYears(
   investmentTermYears: number | undefined,
   investmentTermMonth: number | undefined
