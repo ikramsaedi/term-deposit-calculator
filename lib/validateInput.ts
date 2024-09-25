@@ -1,4 +1,4 @@
-import { convertMonthsToYears } from "./helpers";
+import { convertMonthsToYears } from "./convertMonthsToYears";
 
 export function validateInput(
   startDeposit: number,

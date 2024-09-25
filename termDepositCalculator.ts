@@ -1,12 +1,8 @@
 import yargs from "yargs";
-import {
-  calculateTermDepositAnnually,
-  calculateTermDepositAtMaturity,
-  calculateTermDepositMonthly,
-  calculateTermDepositQuarterly,
-} from "./lib/helpers";
+import { calculateTermDepositAtMaturity } from "./lib/calculateTermDepositAtMaturity";
 import { validateInput } from "./lib/validateInput";
 import { getInvestmentTermInYears } from "./lib/getInvestmentTermInYears";
+import { calculateCompoundInterest } from "./lib/calculateCompoundInterest";
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -53,24 +49,27 @@ switch (argv["interest-paid"]) {
 
     break;
   case "annually":
-    finalBalance = calculateTermDepositAnnually(
+    finalBalance = calculateCompoundInterest(
       argv["start-deposit"],
       argv["interest-rate"],
-      investmentTerm
+      investmentTerm,
+      1
     );
     break;
   case "quarterly":
-    finalBalance = calculateTermDepositQuarterly(
+    finalBalance = calculateCompoundInterest(
       argv["start-deposit"],
       argv["interest-rate"],
-      investmentTerm
+      investmentTerm,
+      4
     );
     break;
   case "monthly":
-    finalBalance = calculateTermDepositMonthly(
+    finalBalance = calculateCompoundInterest(
       argv["start-deposit"],
       argv["interest-rate"],
-      investmentTerm
+      investmentTerm,
+      12
     );
     break;
   default:
