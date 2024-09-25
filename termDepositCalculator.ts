@@ -1,7 +1,9 @@
 import yargs from "yargs";
 import {
+  calculateTermDepositAnnually,
   calculateTermDepositAtMaturity,
   calculateTermDepositMonthly,
+  calculateTermDepositQuarterly,
 } from "./helpers";
 // NOTE currently all investment terms are in years
 // TODO support investment terms in months
@@ -37,6 +39,22 @@ switch (argv["interest-paid"]) {
 
     console.log("maturity", newTermDepositValue);
     break;
+  case "annually":
+    const newTermDepositValue4 = calculateTermDepositAnnually(
+      argv["start-deposit"],
+      argv["interest-rate"],
+      argv["investment-term"]
+    );
+    console.log("annually", newTermDepositValue4);
+    break;
+  case "quarterly":
+    const newTermDepositValue3 = calculateTermDepositQuarterly(
+      argv["start-deposit"],
+      argv["interest-rate"],
+      argv["investment-term"]
+    );
+    console.log("quarterly", newTermDepositValue3);
+    break;
   case "monthly":
     const newTermDepositValue2 = calculateTermDepositMonthly(
       argv["start-deposit"],
@@ -45,6 +63,7 @@ switch (argv["interest-paid"]) {
     );
     console.log("monthly", newTermDepositValue2);
     break;
+
   default:
     console.log("help! not supposed to be here!");
 }

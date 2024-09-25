@@ -16,21 +16,6 @@ export function calculateTermDepositAtMaturity(
   return startDeposit + simpleInterest;
 }
 
-export function calculateTermDepositMonthly(
-  startDeposit: number,
-  interestRate: number,
-  investmentTerm: number
-) {
-  const compoundInterest = calculateCompoundInterest(
-    startDeposit,
-    interestRate,
-    investmentTerm,
-    12
-  );
-
-  return compoundInterest.toFixed(2);
-}
-
 export function calculateTermDepositAnnually(
   startDeposit: number,
   interestRate: number,
@@ -41,6 +26,36 @@ export function calculateTermDepositAnnually(
     interestRate,
     investmentTerm,
     1
+  );
+
+  return compoundInterest.toFixed(2);
+}
+
+export function calculateTermDepositQuarterly(
+  startDeposit: number,
+  interestRate: number,
+  investmentTerm: number
+) {
+  const compoundInterest = calculateCompoundInterest(
+    startDeposit,
+    interestRate,
+    investmentTerm,
+    4
+  );
+
+  return compoundInterest.toFixed(2);
+}
+
+export function calculateTermDepositMonthly(
+  startDeposit: number,
+  interestRate: number,
+  investmentTerm: number
+) {
+  const compoundInterest = calculateCompoundInterest(
+    startDeposit,
+    interestRate,
+    investmentTerm,
+    12
   );
 
   return compoundInterest.toFixed(2);
