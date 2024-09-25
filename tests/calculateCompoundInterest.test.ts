@@ -1,5 +1,5 @@
-import { calculateCompoundInterest } from "./calculateCompoundInterest";
-import { calculateTermDepositMonthly } from "./helpers";
+import { calculateCompoundInterest } from "../lib/calculateCompoundInterest";
+import { calculateTermDepositMonthly } from "../lib/helpers";
 
 describe("calculateCompoundInterest", () => {
   describe("for valid values it returns the correct interest rate", () => {

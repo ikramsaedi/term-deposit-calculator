@@ -4,8 +4,8 @@ import {
   calculateTermDepositAtMaturity,
   calculateTermDepositMonthly,
   calculateTermDepositQuarterly,
-} from "./helpers";
-import { validateInput } from "./validateInput";
+} from "./lib/helpers";
+import { validateInput } from "./lib/validateInput";
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -36,41 +36,41 @@ validateInput(
   argv["investment-term"]
 );
 
+let finalBalance: number | undefined;
 switch (argv["interest-paid"]) {
   case "at maturity":
-    const newTermDepositValue = calculateTermDepositAtMaturity(
+    finalBalance = calculateTermDepositAtMaturity(
       argv["start-deposit"],
       argv["interest-rate"],
       argv["investment-term"]
     );
 
-    console.log("maturity", newTermDepositValue);
     break;
   case "annually":
-    const newTermDepositValue4 = calculateTermDepositAnnually(
+    finalBalance = calculateTermDepositAnnually(
       argv["start-deposit"],
       argv["interest-rate"],
       argv["investment-term"]
     );
-    console.log("annually", newTermDepositValue4);
     break;
   case "quarterly":
-    const newTermDepositValue3 = calculateTermDepositQuarterly(
+    finalBalance = calculateTermDepositQuarterly(
       argv["start-deposit"],
       argv["interest-rate"],
       argv["investment-term"]
     );
-    console.log("quarterly", newTermDepositValue3);
     break;
   case "monthly":
-    const newTermDepositValue2 = calculateTermDepositMonthly(
+    finalBalance = calculateTermDepositMonthly(
       argv["start-deposit"],
       argv["interest-rate"],
       argv["investment-term"]
     );
-    console.log("monthly", newTermDepositValue2);
     break;
-
   default:
-    console.log("help! not supposed to be here!");
+    throw new Error(
+      "Something has gone wrong and we have not been able to calculate your final balance."
+    );
 }
+
+console.log(`Your final balance is $${finalBalance.toFixed(2)}`);

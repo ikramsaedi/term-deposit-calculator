@@ -28,7 +28,7 @@ export function calculateTermDepositAnnually(
     1
   );
 
-  return compoundInterest.toFixed(2);
+  return compoundInterest;
 }
 
 export function calculateTermDepositQuarterly(
@@ -43,7 +43,7 @@ export function calculateTermDepositQuarterly(
     4
   );
 
-  return compoundInterest.toFixed(2);
+  return compoundInterest;
 }
 
 export function calculateTermDepositMonthly(
@@ -58,5 +58,5 @@ export function calculateTermDepositMonthly(
     12
   );
 
-  return compoundInterest.toFixed(2);
+  return compoundInterest;
 }
