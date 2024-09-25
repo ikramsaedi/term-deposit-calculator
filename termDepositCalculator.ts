@@ -1,4 +1,5 @@
 import yargs from "yargs";
+import { calculateCompoundInterest } from "./calculateCompoundInterest";
 // NOTE currently all investment terms are in years
 // TODO support investment terms in months
 
@@ -51,7 +52,7 @@ switch (argv["interest-paid"]) {
  * @param investmentTerm
  * Uses simple interest formula
  */
-function calculateTermDepositAtMaturity(
+export function calculateTermDepositAtMaturity(
   startDeposit: number,
   interestRate: number,
   investmentTerm: number
@@ -60,29 +61,17 @@ function calculateTermDepositAtMaturity(
   return startDeposit + simpleInterest;
 }
 
-function calculateTermDepositMonthly(
+export function calculateTermDepositMonthly(
   startDeposit: number,
   interestRate: number,
   investmentTerm: number
 ) {
-  return calculateCompoundInterest(
+  const compoundInterest = calculateCompoundInterest(
     startDeposit,
     interestRate,
     investmentTerm,
     12
   );
-}
 
-function calculateCompoundInterest(
-  startDeposit: number,
-  interestRate: number,
-  investmentTerm: number,
-  timesCompounded: number
-) {
-  const rateAsPercentage = interestRate / 100;
-  const compoundInterest =
-    (1 + rateAsPercentage / timesCompounded) **
-    (timesCompounded * investmentTerm);
-
-  return startDeposit * compoundInterest;
+  return compoundInterest.toFixed(2);
 }
