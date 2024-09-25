@@ -1,19 +1,16 @@
 import { calculateCompoundInterest } from "../lib/calculateCompoundInterest";
 
 describe("calculateCompoundInterest", () => {
-  describe("when calculating term deposit that is compounded monthly", () => {
-    it("returns correct final balance", () => {
-      const startDeposit = 10000;
-      const interestRate = 1.1;
-      const investmentTerm = 3;
-      const timesCompounded = 12;
+  it.each([[10000, 1.1, 3, 12, 10335.35]])(
+    `should calculate correct compound interest for startDeposit=%d, interestRate=%d, investmentTerm=%d, timesCompounded=%d`,
+    (startDeposit, interestRate, investmentTerm, timesCompounded, expected) => {
       const result = calculateCompoundInterest(
         startDeposit,
         interestRate,
         investmentTerm,
         timesCompounded
       );
-      expect(result).toBeCloseTo(10335.35);
-    });
-  });
+      expect(result).toBeCloseTo(expected);
+    }
+  );
 });
