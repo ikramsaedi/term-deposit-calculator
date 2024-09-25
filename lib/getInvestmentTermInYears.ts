@@ -1,5 +1,3 @@
-import { convertMonthsToYears } from "./convertMonthsToYears";
-
 /**
  * This combines the investment term in years and months into a single investment term number.
  *
@@ -8,15 +6,15 @@ import { convertMonthsToYears } from "./convertMonthsToYears";
  */
 export function getInvestmentTermInYears(
   investmentTermYears: number | undefined,
-  investmentTermMonth: number | undefined
+  investmentTermMonths: number | undefined
 ) {
   let investmentTerm = 0;
   if (investmentTermYears) {
     investmentTerm += investmentTermYears;
   }
 
-  if (investmentTermMonth) {
-    investmentTerm += convertMonthsToYears(investmentTermMonth);
+  if (investmentTermMonths) {
+    investmentTerm += investmentTermMonths / 12.0;
   }
 
   if (investmentTerm === 0) {

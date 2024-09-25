@@ -1,4 +1,4 @@
-import { convertMonthsToYears } from "./convertMonthsToYears";
+import { getInvestmentTermInYears } from "./getInvestmentTermInYears";
 
 /**
  * This validates the CLI arguments passed through to termDepositCalculator
@@ -16,27 +16,16 @@ export function validateInput(
     );
   }
 
-  if (
-    investmentTermYears &&
-    (investmentTermYears <= 0 || investmentTermYears > 5)
-  ) {
+  const investmentTerm = getInvestmentTermInYears(
+    investmentTermYears,
+    investmentTermMonths
+  );
+  if (investmentTerm <= 0 || investmentTerm > 5) {
     throw new Error(
-      "Investment term must be greater than 0 and less than or equal to 5 years."
+      "Total investment term must be greater than 0 and less than or equal to 5 years."
     );
   }
 
-  const investmentTermMonthExists =
-    investmentTermMonths && convertMonthsToYears(investmentTermMonths);
-
-  if (
-    investmentTermMonthExists &&
-    (convertMonthsToYears(investmentTermMonths) <= 0 ||
-      convertMonthsToYears(investmentTermMonths) > 5)
-  ) {
-    throw new Error(
-      "Investment term must be greater than 0 and less than or equal to 5 years."
-    );
-  }
   // DOC: Assumption made
   // Assumption that nobody would want to make a deposit of 0 dollars
   if (startDeposit <= 0 || startDeposit > 10000000) {
