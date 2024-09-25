@@ -11,10 +11,30 @@ export function calculateCompoundInterest(
   investmentTerm: number,
   timesCompounded: number
 ) {
+  validate(startDeposit, investmentTerm, timesCompounded);
+
   const rateAsPercentage = interestRate / 100;
   const compoundInterest =
     (1 + rateAsPercentage / timesCompounded) **
     (timesCompounded * investmentTerm);
 
   return startDeposit * compoundInterest;
+}
+
+function validate(
+  startDeposit: number,
+  investmentTerm: number,
+  timesCompounded: number
+) {
+  if (investmentTerm <= 0) {
+    throw new Error("Investment term must be greater than 0.");
+  }
+
+  if (startDeposit <= 0) {
+    throw new Error("Start deposit must be greater than 0.");
+  }
+
+  if (timesCompounded <= 0) {
+    throw new Error("Times compounded must be greater than 0.");
+  }
 }
