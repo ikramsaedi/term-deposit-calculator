@@ -54,6 +54,73 @@ describe("calculateCompoundInterest", () => {
       }).toThrow();
     });
   });
+
+  describe("if startDeposit is invalid", () => {
+    it("when start deposit is 0, it should throw an error", () => {
+      const startDeposit = 0;
+      const interestRate = 1.1;
+      const investmentTerm = 3;
+      const timesCompounded = 4;
+
+      expect(() => {
+        calculateCompoundInterest(
+          startDeposit,
+          interestRate,
+          investmentTerm,
+          timesCompounded
+        );
+      }).toThrow();
+    });
+
+    it("when start deposit is negative, it should throw an error", () => {
+      const startDeposit = -3000;
+      const interestRate = 1.1;
+      const investmentTerm = 3;
+      const timesCompounded = 4;
+
+      expect(() => {
+        calculateCompoundInterest(
+          startDeposit,
+          interestRate,
+          investmentTerm,
+          timesCompounded
+        );
+      }).toThrow();
+    });
+  });
+
+  describe("if timesCompounded is invalid", () => {
+    it("when timesCompounded is 0, it should throw an error", () => {
+      const startDeposit = 3000;
+      const interestRate = 1.1;
+      const investmentTerm = 3;
+      const timesCompounded = 0;
+
+      expect(() => {
+        calculateCompoundInterest(
+          startDeposit,
+          interestRate,
+          investmentTerm,
+          timesCompounded
+        );
+      }).toThrow();
+    });
+    it("when timesCompounded is negative, it should throw an error", () => {
+      const startDeposit = 3000;
+      const interestRate = 1.1;
+      const investmentTerm = 3;
+      const timesCompounded = -5;
+
+      expect(() => {
+        calculateCompoundInterest(
+          startDeposit,
+          interestRate,
+          investmentTerm,
+          timesCompounded
+        );
+      }).toThrow();
+    });
+  });
 });
 
 function testCalculateCompoundInterest(testCases: number[][]) {
