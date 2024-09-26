@@ -61,7 +61,7 @@ I also didn't think testing `termDepositCalculator.ts` was that crucial as it ma
 I googled formulas and cross checked their outputs with the Bendigo Bank app calculator provided in the task description. Been a while since I've calculated compound interest! Resources I've used:
 
 - [Compound interest formula](https://www.thecalculatorsite.com/finance/calculators/compound-interest-formula)
-- Simple interest formula
+- [Simple interest formula](https://www.cuemath.com/commercial-math/simple-interest/)
 
 ## Business logic vs calculation logic
 
@@ -89,3 +89,7 @@ And there is also different validation logic at the app layer, which is for the 
 ## TODO
 
 This could definitely do with some more thorough testing! I ran out of time though.
+
+The example with the most comprehensive set of tests is in `calculateTermDepositAtMaturity.test.ts`. However, it could do with more assortments of values being tested for.
+
+The second best is `validateInputs.test.ts`. The other could use some work!
