@@ -36,6 +36,8 @@ npx ts-node termDepositCalculator.ts --start-deposit=10000 --interest-rate=1.1  
 
 ## How it was built
 
+This is a CLI app that runs using Node and Typescript.
+
 ### CLI Args Parsing
 
 For CLI args parsing I decided to use the library `yargs`. I didn't want to have to get bogged down parsing arguments myself in Node -- there's no need to reinvent the wheel! This gave me type safety out of the box (ie: `--interest-paid` is a flag that must always be present) without much work from me.
@@ -53,10 +55,6 @@ I decided to use Jest to create unit tests for my functions. I haven't worked wi
 Since my code is relatively modularised, it makes sense to write unit tests for each function rather than trying to test the entire `termDepositCalculator.ts` file.
 
 I also didn't think testing `termDepositCalculator.ts` was that crucial as it mainly has CLI logic, which should be largely tested by the `yargs` library. And we are under time constraints!
-
-#### How test cases were generated
-
-I tried to test a few different scenarios in ways that I expect the function to be used, and also unexpected ones as well.
 
 ## How interest is calculated
 
@@ -88,6 +86,6 @@ And there is also different validation logic at the app layer, which is for the 
 - Capping interest rates at 15%, and not allowing for 0% or negative interest rates.
 - Start deposit is capped at 10 million. I'm not sure if anyone with that much money would invest in 10 million into a term deposit though.
 
-## Difficulties
+## TODO
 
-Taking in both months and years for `investment-term` was interesting!
+This could definitely do with some more thorough testing! I ran out of time though.

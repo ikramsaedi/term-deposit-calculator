@@ -11,6 +11,17 @@ export function calculateTermDepositAtMaturity(
   interestRate: number,
   investmentTerm: number
 ) {
+  validate(startDeposit, investmentTerm);
   const simpleInterest = (startDeposit * interestRate * investmentTerm) / 100;
   return startDeposit + simpleInterest;
+}
+
+function validate(startDeposit: number, investmentTerm: number) {
+  if (investmentTerm <= 0) {
+    throw new Error("Investment term must be greater than 0.");
+  }
+
+  if (startDeposit <= 0) {
+    throw new Error("Start deposit must be greater than 0.");
+  }
 }
