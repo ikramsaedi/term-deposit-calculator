@@ -3,6 +3,7 @@ import { calculateTermDepositAtMaturity } from "./lib/calculateTermDepositAtMatu
 import { validateInput } from "./lib/validateInput";
 import { getInvestmentTermInYears } from "./lib/getInvestmentTermInYears";
 import { calculateCompoundInterest } from "./lib/calculateCompoundInterest";
+import { printMonthlyInterest } from "./lib/printMonthlyInterest";
 
 /**
  * Arguments passed in from the command line
@@ -68,12 +69,29 @@ switch (argv["interest-paid"]) {
     );
     break;
   case "monthly":
-    finalBalance = calculateCompoundInterest(
-      argv["start-deposit"],
-      argv["interest-rate"],
-      investmentTerm,
-      12
+    // start with an investment term of 3 months
+    // start deposit of 10000 dollars
+    // interest rate of 1.1%
+    // Will need to ouput
+
+    // TODO cleanup
+    if (!argv["investment-term-months"]) {
+      break;
+    }
+
+    console.log(
+      printMonthlyInterest(
+        argv["start-deposit"],
+        argv["investment-term-months"],
+        argv["interest-rate"]
+      )
     );
+    // finalBalance = calculateCompoundInterest(
+    //   argv["start-deposit"],
+    //   argv["interest-rate"],
+    //   investmentTerm,
+    //   12
+    // );
     break;
   // This shouldn't be possible, but in case we somehow get an unsupported value for `interest-paid`
   // we can get an error rather than failing silently.
@@ -84,4 +102,4 @@ switch (argv["interest-paid"]) {
     );
 }
 
-console.log(`Your final balance is $${finalBalance.toFixed(2)}`);
+// console.log(`Your final balance is $${finalBalance.toFixed(2)}`);
